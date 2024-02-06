@@ -7,7 +7,8 @@ const app = express()
 const { connectToDb } = require("./connection/db.js");
 const errorHandler = require("./middleware/errorHandler.js");
 const userRoutes = require("./routes/user.route.js")
-const linkRoutes = require("./routes/link.route.js")
+const linkRoutes = require("./routes/link.route.js");
+const { incrementLink } = require("./controllers/link.controllers.js");
 const PORT = process.env.PORT || 3000
 //middlewares
 app.use(cors())
@@ -18,6 +19,8 @@ app.use(express.urlencoded({ extended: false }))
 //db connection
 connectToDb()
 //routes
+//handling increment and redirect
+app.get("/:urlId", incrementLink)
 app.use("/api/auth",userRoutes)
 app.use("/api/link",linkRoutes)
 //error handler
