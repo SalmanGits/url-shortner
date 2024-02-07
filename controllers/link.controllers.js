@@ -39,6 +39,7 @@ const getLink = async (req, res, next) => {
     try {
         const { isActive } = req.body
         const { id } = req.user
+        console.log(id)
         const links = await Link.find({ isActive, user: id })
         if (links.length) {
             return sendResponse(res, { status: 200, message: "All Links", success: true, data: links })
