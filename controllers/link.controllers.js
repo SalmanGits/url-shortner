@@ -80,6 +80,7 @@ const incrementLink = async (req, res, next) => {
         const { urlId } = req.params
         console.log(urlId)
         const existingLink = await Link.findOne({ urlId });
+        console.log(existingLink)
         if (existingLink) {
             await Link.updateOne(
                 {
