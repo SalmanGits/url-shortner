@@ -88,7 +88,8 @@ const incrementLink = async (req, res, next) => {
                 },
                 { $inc: { clicks: 1 } }
             );
-            return res.redirect(existingLink.url);
+            const fullUrl = existingLink.url.startsWith("http") ? existingLink.url : `https://${existingLink.url}`;
+            return res.redirect(fullUrl);
 
         }
         else {
